@@ -27,9 +27,7 @@ Route::post('/login', function (Request $request) {
 });
 
 
-// Route::middleware(['auth:sanctum'])->group(function () {
-Route::name('')->group(function () {
-
+Route::middleware(['auth:sanctum'])->group(function () {
     // logout
     Route::delete('/logout', function (Request $request) {
         $request->user()->tokens()->delete();
