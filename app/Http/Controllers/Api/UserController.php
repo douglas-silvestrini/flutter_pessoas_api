@@ -18,6 +18,14 @@ class UserController
         ]);
     }
 
+    // show
+    public function show(User $user)
+    {
+        return response()->json([
+            'user' => new UserResource($user)
+        ]);
+    }
+
     // store
     public function store(Request $request)
     {
