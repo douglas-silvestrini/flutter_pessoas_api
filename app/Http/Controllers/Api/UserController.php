@@ -41,6 +41,28 @@ class UserController
     }
 
 
+    // update
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'is_active' => ['required', 'boolean'],
+        ]);
+
+        try {
+            $user = $user->update($validated);
+            return response()->json([
+                'user' => new UserResource($user)
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], $e->getCode());
+        }
+    }
+
+
     // delete
     public function destroy(User $user)
     {
